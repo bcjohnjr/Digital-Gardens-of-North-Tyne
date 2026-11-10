@@ -948,7 +948,7 @@ for t_ in ["Jonathan Karl Bily\nIndependent Researcher, Zaragoza, Spain\njonatha
            "The analysis fits the journal's Analysis category: it quantifies a technological system and the policies around it — hourly "
            "renewable procurement, firm backup, waste-heat use and host-community decarbonisation — with a fully reproducible model.",
            "All code, input data and validation tests are provided. I conceived and promote the Digital Gardens proposal, and this interest is "
-           "declared in the manuscript. The work has not been published and is not under consideration elsewhere.",
+           "declared in the manuscript. I accept responsibility for the accuracy and completeness of the submission.",
            "Yours sincerely,\nJonathan Karl Bily"]:
     c.add_paragraph(t_)
 c.save(MS / "Cover_Letter.docx")
