@@ -1,0 +1,10 @@
+{
+  "twin_annual_gwh": 884.6638922879998,
+  "dg_annual_gwh": 887.6193307204849,
+  "twin_delivered_gbp_per_mwh": 166.30447374429224,
+  "dg_delivered_gbp_per_mwh": 196.5313406761313,
+  "grid_twin_25y_bill_gbp_million": 3678.089076188326,
+  "dg_25y_energy_gbp_million": 4361.125426913682,
+  "dg_incremental_25y_energy_gbp_million": 683.0363507253555,
+  "scope": "Identical installed IT capacity, different disclosed community service load; no matched-budget programme assumed"
+}

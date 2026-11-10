@@ -1,0 +1,6 @@
+accounting_scenario,digital_gardens_kt_co2_year,grid_twin_kt_co2_year,qualification
+Location based: all grid-served electricity,157.398526,156.874448,Symmetrical historical GB average applied to facility consumption
+Hourly market attributes: only DG has verified matching (conditional),37.000000,156.874448,Unequal conditional contracts; NOT an observed atmospheric reduction
+Hourly market attributes: both have equivalent matching (hypothetical),37.000000,36.876804,Illustrative hourly matching; full residual mix and certificate evidence missing
+Consequential A: no proven additional renewable capacity,157.398526,156.874448,Do not attribute avoided CO2 to contracts alone
+Consequential B: verified additional capacity and marginal displacement,,,"Unquantifiable without hourly marginal emissions, curtailment and CfD counterfactual"

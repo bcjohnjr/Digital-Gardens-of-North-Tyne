@@ -1,0 +1,6 @@
+site,published_capacity_mw,capacity_basis,hypothetical_it_mw,hypothetical_facility_gwh_year,potential_recoverable_it_heat_gwh_year,location_based_screen_kt_co2_year,published_operational_jobs,announced_jobs_per_it_mw
+"QTS Cambois full build, 720 MW IT",720,IT,720,6811.776,4101.2568,1207.909138,400,0.555556
+"Stellium 1, 15 MW facility-power allocation",15,facility power,12.5,118.26,71.202375,20.970645,,
+"Stellium campus, 80 MW available facility power",80,facility power,66.666667,630.72,379.746,111.843439,,
+"Stargate UK, proposed 8,000 GPUs, UK-wide",16.48,IT,16.48,155.913984,93.873211,27.647698,,
+"Stargate UK, proposed 31,000 GPUs, UK-wide",63.86,IT,63.86,604.166688,363.758693,107.13483,,
