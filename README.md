@@ -1,26 +1,30 @@
-# Digital Gardens of North Tyne Valley — V39 computational research release
+# Digital Gardens of North Tyne Valley — V41 flat GitHub research release
 
-Energy & Environmental Science (Royal Society of Chemistry), Analysis article; 10 November 2026.
+*Energy & Environmental Science* (Royal Society of Chemistry); Analysis manuscript, 10 November 2026.
 
-This is the **separate research release**, not part of the journal submission. All modelled operating results are scenario estimates, not measured operator performance. The article and supplementary information were editorially corrected separately; `build_manuscript.py` is a historical helper, not a reproducible generator of the final author-edited Word documents.
+This is the numerical research release and is not itself the journal manuscript. Modelled outcomes are scenarios, **not measured operator performance**. The `build_manuscript.py` file is a legacy draft helper, and must **not** be used to overwrite the separately curated RSC submission documents.
 
-## Directory structure
+## Flat layout: no folders needed
 
-- `DATA/`: prepared historical ERA5 records (2010–2025), GB grid and market data, communities and provenance records.
-- `OUTPUT/`: expected numerical JSON/CSV/NPZ output, including the corrected `REVISED_SENSITIVITY.json` and the symmetrical accounting screens.
-- Root `*.py` scripts: computational pipeline, sensitivity screens and local validation.
-- `SHA256_MANIFEST.csv`: SHA-256 digests of every distributed research-release file other than the manifest itself.
-- `verify_manifest.py`: standard-library checksum verifier, run after obtaining/extracting this release.
+All 2010–2025 ERA5 `.csv.gz` files, 2018–2025 grid records, `.py` scripts, prepared `.json` / `.csv` / `.npz` outputs, metadata and verification tools are located **directly in the repository root**. There are **no DATA/ or OUTPUT/ folders**. All model scripts use the root of the script directory; they can be invoked from any current working directory.
 
-## Python and clean-directory reproduction
+Public repository: https://github.com/bcjohnjr/Digital-Gardens-of-North-Tyne
 
-Requires Python 3.11+ and `numpy`, `pandas`, `scipy`, `matplotlib`; run commands from the **repository root**. To verify the delivered archive *before* recomputation:
+## Set up and verify from a new clone
+
+Requires Python 3.11+ and `numpy`, `pandas`, `scipy`, and `matplotlib` for the model (optional legacy Word helper requires `python-docx`). Clone or download the exact release, and from the repository directory run:
 
 ```bash
 python verify_manifest.py
+python reorganise_repository.py   # optional non-destructive flat-layout check; never moves files
+python validate.py
 ```
 
-To regenerate the outputs from the prepared input data, run in this order. The first two model searches can be the slowest steps; allow them to finish before the dependent scripts.
+`verify_manifest.py` tests the distributed **byte-for-byte release snapshot**. Run it **before** regenerating any output. A Git clone has a hidden `.git` directory, which the verifier intentionally ignores. Any extra untracked files in root should be removed or accounted for before release verification.
+
+## Regenerate numerical results
+
+Run these in order, from the repository root; there are no directory-renaming or extraction steps:
 
 ```bash
 python power_247.py
@@ -41,28 +45,16 @@ python revised_sensitivities.py
 python validate.py
 ```
 
-The `revised_sensitivities.py` step is required: it regenerates `OUTPUT/REVISED_SENSITIVITY.json` **and** `.csv` after the updated community ledger. The constant-baseline 25-year gross avoidance is approximately 2,727 kt, not the obsolete 2,800.8 kt. The directional 10%- and 2%-annual-decline sensitivities give approximately 1.01 and 2.16 Mt, respectively. Other optional analyses may depend on measurement inputs not distributed here. `figures.py` regenerates exploratory figures for the historical helper, **not** the curated article figures.
+`validate.py` contains **149 model assertions**. `regional_site_screen.py` adds **seven** checks, and `emissions_scope2_screen.py` adds **five** checks (161 total, when all pass). The power-design search can be computationally intensive. The `figures.py` helper creates exploratory figures in the **root** and is **not** the generator of the final curated journal figures. The two historical data-download scripts can create working cache folders and ZIPs for new raw data downloads; they are optional and not necessary for reproducing the prepared input release. Their own download archives are not the canonical model input paths.
 
-`validate.py` executes 149 internal checks. The regional screen performs seven checks and the symmetrical carbon screen performs five. All 161 checks passed on the **local archive** on 10 November 2026. Re-running scripts can change file timestamps or formats; regenerate the SHA-256 inventory for a newly issued release after finalising the outputs.
+The included `REVISED_SENSITIVITY` output incorporates the corrected community ledger; the constant-baseline 25-year gross avoidance is approximately **2,727 kt** (not 2,800.8 kt). Directional 10%- and 2%-annual-decline sensitivities yield approximately 1.01 and 2.16 Mt. The other existing assumptions and scenario qualifications are preserved.
 
-## Carbon, heat and attribution boundaries
+## Re-issuing a snapshot manifest
 
-All electricity use associated with community household heat pumps and EV charging is attributed the historical *location-based* grid factor. Contractual procurement factors are reported separately and not treated as physical community-grid displacement. The conditional gross annual community ledger gives 109.1 kt CO2e (full delivery), 95.2 kt (no seaweed approval), 47.6 kt (half uptake) and 56.7 kt (tier-weighted uptake), all before incremental vehicle manufacturing.
+Recomputing output files may alter byte representations (especially compressed and NumPy files) or output ordering without changing rounded scientific results. After validating numerical reproducibility, use `python make_manifest.py` to create a new **release snapshot** inventory and then rerun `python verify_manifest.py`. Do **not** regenerate the checksums to conceal a failed independent validation.
 
-Campus recoverable heat is a technical estimate, not measured waste or proven useful heat offtake. The illustrative TNUoS flat proxy is not a verified site tariff; the `REVISED_SENSITIVITY` fixed-charge figures vary Digital Gardens alone and **must not** be interpreted as a fair twin comparison. Regional scaling must use North East-wide baselines (61% of activities addressed; 55% of resident-plus-cattle baseline), not catchment denominators.
+## Attribution and limitations
 
-## PUBLICATION AND DOI RELEASE GATE — NOT YET CLEARED
+The community electricity loads from household heat pumps and EVs receive historical location-based grid emissions. The gross conditional annual community ledger is 109.1 kt CO2e (full delivery), 95.2 kt (no seaweed approval), 47.6 kt (half uptake), and 56.7 kt (tier-weighted uptake), excluding incremental vehicle manufacturing. Recoverable campus heat is a technical estimate, not documented useful heat offtake. The £25.7/MWh TNUoS proxy is not a verified site tariff; `REVISED_SENSITIVITY` fixed-charge results vary Digital Gardens alone, **not** a matched grid twin. North East-wide scaling uses 61% and 55% of the appropriate regional baselines.
 
-Public GitHub repository: https://github.com/bcjohnjr/UK---Digital-Gardens-versus-Mega-Data-Centres
-
-The live public repository was checked on 10 November 2026 and still uses an older flat root layout, with files missing from this V39 hierarchy. The public version is therefore **not** asserted to reproduce the numerical analyses from a fresh clone. Do not use 'published and reproducible from a clean clone' or claim a UK-specific Zenodo DOI until the repository is updated and independently checked. The archive supplied in the V39 package is the candidate upload source.
-
-Recommended public release procedure:
-
-1. Back up the public repository and put the V39 release on a separate branch or update it with a reviewed commit; do not overwrite newer work without checking conflicts.
-2. Place the exact `DATA/`, `OUTPUT/`, source Python and README hierarchy from this release in the repository root; remove or reconcile duplicate legacy flat files.
-3. Clone the public release into a clean working directory and run `python verify_manifest.py` before regenerating anything.
-4. Run the complete regeneration sequence above. Compare the resulting outputs with the package using appropriate numerical/byte-for-byte checks (compressed/NumPy byte representations can vary by platform).
-5. Archive the verified GitHub release in Zenodo and add its DOI to the final journal submission only after the DOI resolves.
-
-Raw third-party data redistribution rights and original licence terms need independent verification before public deposit. The author is responsible for confirming repository status, patent/COI disclosure and any separately submitted Joule manuscript's editorial status.
+Prepared historical data preserve attribution and provenance records. Upstream data licensing, actual site engineering, and an independent fresh-clone rerun remain separate checks. **This README does not claim that the live GitHub branch has been independently validated or assigned a Zenodo DOI.**

@@ -1,4 +1,4 @@
-"""Readers for the ERA5 weather and GB grid archives produced by the two downloaders in DATA/.
+"""Readers for the ERA5 weather and GB grid records located in the flat repository root.
 
 All series are returned as arrays of shape (n_years, 8760) in UTC, with 29 February removed so that every year has
 8,760 hours. Gaps in the half-hourly grid record are filled by linear interpolation and the filled share is reported.

@@ -66,6 +66,6 @@ def main():
     args=ap.parse_args()
     if not args.rego: ap.print_help();return
     stats=run_rego(args.rego,args.date_col,args.mwh_col,args.capacity_mw,args.wind_site,args.hub_m)
-    Path('FIELD_VALIDATION.json').write_text(json.dumps(stats,indent=2))
+    (Path(__file__).resolve().parent / 'FIELD_VALIDATION.json').write_text(json.dumps(stats,indent=2))
     print(json.dumps(stats,indent=2))
 if __name__=='__main__':main()

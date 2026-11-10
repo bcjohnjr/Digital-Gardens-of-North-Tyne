@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Explicit named-campus engineering screens, not operator emissions inventories.
-Standard library only; Python 3.10+; output located under OUTPUT/.
+Standard library only; Python 3.11+; output written into the flat repository root.
 """
 import csv
 from pathlib import Path
@@ -44,7 +44,7 @@ def main():
     assert 363<sg31['potential_recoverable_it_heat_gwh_year']<365
     assert abs(qts['announced_jobs_per_it_mw']-400/720)<1e-5
     assert len(rows)==5
-    out=Path('OUTPUT');out.mkdir(exist_ok=True)
+    out=Path(__file__).resolve().parent
     with (out/'REGIONAL_SITE_SCREEN.csv').open('w',newline='',encoding='utf-8') as f:
         w=csv.DictWriter(f,fieldnames=rows[0].keys());w.writeheader();w.writerows(rows)
     print('Regional campus: 7 checks passed. Technical heat potential is NOT actual wasted heat.')

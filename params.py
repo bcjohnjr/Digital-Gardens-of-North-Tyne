@@ -7,10 +7,12 @@ converted at GBP_PER_USD. Historical wholesale prices (2018-2025) are nominal ou
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-DATA = HERE / "DATA"
-OUT = HERE / "OUTPUT"
-WX_DIR = DATA / "Digital_Gardens_UK_ERA5_historical"      # unpacked output of digital_gardens_uk_era5.py
-GRID_DIR = DATA / "Digital_Gardens_UK_GRID"                 # unpacked output of digital_gardens_uk_grid.py
+# Flat GitHub release: input CSV/GZ, output JSON/CSV/NPZ and scripts all reside in the repository root.
+# Keep the aliases for compatibility with every existing analysis script.
+DATA = HERE
+OUT = HERE
+WX_DIR = HERE
+GRID_DIR = HERE
 
 GBP_PER_USD = 0.78
 WEATHER_YEARS = list(range(2010, 2026))

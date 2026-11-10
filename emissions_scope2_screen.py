@@ -25,7 +25,7 @@ def main():
     assert abs((DG_LOCATION_KT-TWIN_LOCATION_KT)-.52407787497304)<1e-5
     assert abs(TWIN_EQUAL_HOURLY_KT-36.876803920084555)<1e-7
     assert abs(DG_GWH-TWIN_GWH-2.9554384324849)<1e-5
-    out=Path('OUTPUT');out.mkdir(exist_ok=True)
+    out=Path(__file__).resolve().parent
     with (out/'CARBON_ACCOUNTING_SCREEN.csv').open('w',newline='',encoding='utf-8') as f:
        w=csv.writer(f);w.writerow(['accounting_scenario','digital_gardens_kt_co2_year','grid_twin_kt_co2_year','qualification'])
        for name,dg,twin,q in SCENARIOS:w.writerow([name,'' if dg is None else f'{dg:.6f}','' if twin is None else f'{twin:.6f}',q])

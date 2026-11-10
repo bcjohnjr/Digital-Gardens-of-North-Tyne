@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 import params as P
 import power_247 as pw
 
-FIG = P.HERE.parent / "FIGURES"; FIG.mkdir(exist_ok=True)
+FIG = P.HERE  # exploratory figure outputs remain in the flat repository root
 C1, C2, C3, C4, C5, C6, C7, C8 = "#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#6250d6", "#e34948"
 INK, INK2, GRID = "#0b0b0b", "#52514e", "#e4e3df"
 plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 8.5, "axes.edgecolor": INK2, "axes.labelcolor": INK, "xtick.color": INK2,

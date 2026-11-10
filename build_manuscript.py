@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Build the manuscript, highlights and cover letter (DOCX) from the model outputs. Every number is read from OUTPUT/."""
+"""Build the manuscript, highlights and cover letter (DOCX) from the model outputs. Every number is read from the flat release root. Legacy helper only; not the journal-curated manuscript."""
 import json
 from docx import Document
 from docx.shared import Pt, Cm, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 import params as P
 
-O = P.OUT; ROOT = P.HERE.parent; MS = ROOT / "MANUSCRIPT"; MS.mkdir(exist_ok=True); FIG = ROOT / "FIGURES"
+O = P.OUT; ROOT = P.HERE; MS = ROOT; FIG = ROOT  # legacy helper; NOT the journal-curated submission
 d = json.load(open(O / "design.json")); dt = json.load(open(O / "design_trajectory.json")); hc = json.load(open(O / "heat_community.json"))
 de = json.load(open(O / "design_econ.json")); ce = json.load(open(O / "compare_econ.json")); pw = json.load(open(O / "power_247.json"))
 tr = json.load(open(O / "trajectory.json"))
